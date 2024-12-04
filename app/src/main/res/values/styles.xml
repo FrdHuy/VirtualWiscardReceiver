@@ -1,0 +1,10 @@
+<resources>
+    <!-- Application theme definition -->
+    <style name="Theme.VirtualWiscardReceiver" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Custom theme attributes -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryDark">@color/purple_700</item>
+        <item name="colorAccent">@color/teal_200</item>
+        <!-- Additional custom attributes -->
+    </style>
+</resources>
