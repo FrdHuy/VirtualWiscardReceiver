@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">VirtualWiscardReceiver</string>
-    <string name="nfc_not_supported">NFC is not supported on this device.</string>
+    <string name="app_name">Virtual Wiscard Receiver</string>
+    <string name="default_message">Waiting for NFC...</string>
+    <string name="simulate_pass">Simulate PASS</string>
+    <string name="simulate_fail">Simulate FAIL</string>
     <string name="access_granted">Access Granted</string>
     <string name="access_denied">Access Denied</string>
+    <string name="nfc_not_supported">NFC is not supported on this device</string>
 </resources>
