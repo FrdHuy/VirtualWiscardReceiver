@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var statusTextView: TextView
     private lateinit var testPassButton: Button
     private lateinit var testFailButton: Button
+    private lateinit var receiveSignalButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,10 +29,12 @@ class MainActivity : AppCompatActivity() {
         statusTextView = findViewById(R.id.statusTextView)
         testPassButton = findViewById(R.id.testPassButton)
         testFailButton = findViewById(R.id.testFailButton)
+        receiveSignalButton = findViewById(R.id.receiveSignalButton)
 
         // Initialize NFC Adapter
         nfcAdapter = NfcAdapter.getDefaultAdapter(this)
         if (nfcAdapter == null) {
+            Toast.makeText(this, getString(R.string.nfc_not_supported), Toast.LENGTH_LONG).show()
             statusTextView.text = getString(R.string.nfc_not_supported)
         }
 
@@ -42,6 +46,16 @@ class MainActivity : AppCompatActivity() {
         // Simulate FAIL button click
         testFailButton.setOnClickListener {
             simulateNfcMessage("FAIL")
+        }
+
+        // Prepare to receive NFC signal
+        receiveSignalButton.setOnClickListener {
+            if (nfcAdapter?.isEnabled == true) {
+                Toast.makeText(this, "Ready to receive NFC signal", Toast.LENGTH_SHORT).show()
+                statusTextView.text = getString(R.string.waiting_for_signal)
+            } else {
+                Toast.makeText(this, "Please enable NFC to use this feature", Toast.LENGTH_LONG).show()
+            }
         }
     }
 
@@ -71,7 +85,8 @@ class MainActivity : AppCompatActivity() {
             val tag: Tag? = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG)
             Log.d("NFC Test", "NFC tag discovered")
             tag?.let {
-                val simulatedMessage = "PASS" // Replace with real NFC message
+                // Simulate NFC signal handling (can replace with actual logic)
+                val simulatedMessage = "PASS" // Replace with actual NFC message data
                 processNfcMessage(simulatedMessage)
             }
         }
